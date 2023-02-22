@@ -5,7 +5,6 @@ using namespace std;
 
 //construcao do mapa
 void map(){
-    string map[] = {};
     cout << "Battleship Game\n";
 
     cout << "   | A | B | C | D | E |\n";
@@ -14,6 +13,8 @@ void map(){
     cout << " 3 |   |   |   |   |   |\n";
     cout << " 4 |   |   |   |   |   |\n";
     cout << " 5 |   |   |   |   |   |\n\n";
+
+
 
 };
 
@@ -29,8 +30,9 @@ int main (){
          mapa:
             - apenas 5 navios (independente do tipo)
             - escolher posicao
-            - mostrar
-            - verificar posicioes se adequada ("sem espaco", "fora do mapa")
+            - comparar texto com a posicao no mapa
+            - verificar posiciao se adequada ("sem espaco", "fora do mapa")
+            -
 
 
          *opcional/n necessario para o projeto*
@@ -49,7 +51,7 @@ map();
         "5. Patrol Boat (2)\n"};
 
     int contList = 0;
-    while(contList < 5){
+    while(contList < sizeof ships/sizeof ships[0]){
       cout << ships[contList];
       contList++;
     };
@@ -58,12 +60,26 @@ map();
 
     int cont = 0;
     while (cont < 5){
-        string choice;
+        string choiceShip;
+        int choiceLine;
+        char choiceCol;
 
-        cout << "Choose yours ships: \n";
-        cin >> choice;
+        cout << "Choose your ship: \n";
+        cin >> choiceShip;
+
+
+
+        cout << "Choose it place\n";
+        cout << "Line: \n";
+        cin >> choiceLine;
+        cout << "Column: \n";
+        cin >> choiceCol;
         cont++;
+
+
     };
+
+
 }
 
 
