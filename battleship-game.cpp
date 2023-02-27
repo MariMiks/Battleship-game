@@ -4,19 +4,25 @@
 using namespace std;
 
 //construcao do mapa
-void map(){
+void showMap(int places[10][10];){
     cout << "Battleship Game\n";
 
-    cout << "   | A | B | C | D | E |\n";
-    cout << " 1 |   |   |   |   |   |\n";
-    cout << " 2 |   |   |   |   |   |\n";
-    cout << " 3 |   |   |   |   |   |\n";
-    cout << " 4 |   |   |   |   |   |\n";
-    cout << " 5 |   |   |   |   |   |\n\n";
-
+    cout << "    | A | B | C | D | E | F | G | H | I | J |\n";
+    cout << " 1  | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 <<" |\n";
+    cout << " 2  | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 <<" |\n";
+    cout << " 3  | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 <<" |\n";
+    cout << " 4  | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 <<" |\n";
+    cout << " 5  | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 <<" |\n";
+    cout << " 6  | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 <<" |\n";
+    cout << " 7  | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 <<" |\n";
+    cout << " 8  | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 <<" |\n";
+    cout << " 9  | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 <<" |\n";
+    cout << " 10 | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 <<" |\n\n";
 
 
 };
+
+
 
 
 
@@ -28,6 +34,8 @@ int main (){
         (mandar alerta "navio tal atingido", mandar alerta "navio tal abatido")
 
          mapa:
+            - imprimir como tabela
+            - identificar cada parte
             - apenas 5 navios (independente do tipo)
             - escolher posicao
             - comparar texto com a posicao no mapa
@@ -40,7 +48,9 @@ int main (){
         (mapa limpo apenas para mandar comandos e acertar no oponente)
     */
 
-map();
+    int places[10][10];
+
+showMap();
 
 //lista de navios
     string ships[5] =
@@ -50,23 +60,27 @@ map();
         "4. Submarine (3)\n",
         "5. Patrol Boat (2)\n"};
 
-    int contList = 0;
-    while(contList < sizeof ships/sizeof ships[0]){
-      cout << ships[contList];
-      contList++;
+    for (int contList = 0; contList < sizeof ships/sizeof ships[0]; contList++) {
+        cout << ships[contList];
     };
 
 //posicionamento do mapa
 
     int cont = 0;
     while (cont < 5){
-        string choiceShip;
+        int choiceShip;
         int choiceLine;
         char choiceCol;
 
         cout << "Choose your ship: \n";
         cin >> choiceShip;
 
+
+        if (choiceShip > 5){
+            cout << "Thats not an option \n";
+            cout << "Choose another ship: \n";
+            cin >> choiceShip;
+        }
 
 
         cout << "Choose it place\n";
@@ -75,6 +89,7 @@ map();
         cout << "Column: \n";
         cin >> choiceCol;
         cont++;
+
 
 
     };
