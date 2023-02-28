@@ -4,11 +4,41 @@
 using namespace std;
 
 //construcao do mapa
-void showMap(int places[10][10];){
+void initPlaces (int places[][10]){
+    for(int l; l < 10; l++){
+        for (int c; c < 10; c++){
+            places[l][c]=0;
+        }
+    }
+}
+
+void printShip(int place){
+    if (place= 0){
+        cout << " a ";
+    }
+
+}
+
+void showMap(int places[][10]){
     cout << "Battleship Game\n";
 
     cout << "    | A | B | C | D | E | F | G | H | I | J |\n";
-    cout << " 1  | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 <<" |\n";
+
+    for (int line = 1; line < 11; line++){
+
+        if (line < 10){
+            cout << " " << line << "  | " << printShip(places[line][0]) << " | " << printShip(places[line][1]) << " | " << printShip(places[line][2]) << " | " << printShip(places[line][3]) << " | " << printShip(places[line][4]) << " | "
+            cout << printShip(places[line][5]) << " | " << printShip(places[line][6]) << " | " << printShip(places[line][7]) << " | " << printShip(places[line][8]) << " | " << printShip(places[line][9]) <<" |\n";
+        } else {
+            cout << " " << line << "  | " << places[line][0] << " | " << places[line][1] << " | " << places[line][2] << " | " << places[line][3] << " | " << places[line][4] << " | " << places[line][5] << " | ";
+            cout << places[line][6] << " | " << places[line][7] << " | " << places[line][8] << " | " << places[line][9] <<" |\n";
+        }
+
+
+
+    }
+
+    /*
     cout << " 2  | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 <<" |\n";
     cout << " 3  | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 <<" |\n";
     cout << " 4  | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 <<" |\n";
@@ -18,6 +48,8 @@ void showMap(int places[10][10];){
     cout << " 8  | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 <<" |\n";
     cout << " 9  | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 <<" |\n";
     cout << " 10 | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 <<" |\n\n";
+
+    */
 
 
 };
@@ -35,7 +67,7 @@ int main (){
 
          mapa:
             - imprimir como tabela
-            - identificar cada parte
+            - identificar cada lugar
             - apenas 5 navios (independente do tipo)
             - escolher posicao
             - comparar texto com a posicao no mapa
@@ -50,7 +82,7 @@ int main (){
 
     int places[10][10];
 
-showMap();
+void showMap(int places[][10]);
 
 //lista de navios
     string ships[5] =
