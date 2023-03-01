@@ -4,11 +4,9 @@
 using namespace std;
 
 
-
-
 //construcao do mapa
 
-char showPlace(int place){
+int showPlace(int place){
 
     if (place = 0){
         return 0;
@@ -17,24 +15,30 @@ char showPlace(int place){
     };
 
 }
+
 int places[10][10];
 
+
 void showMap(){
-
-
 
     cout << "Battleship Game\n";
 
     cout << "    | A | B | C | D | E | F | G | H | I | J |\n";
 
-    for (int line = 1; line < 11; line++){
+    for (int line = 0; line < 10; line++){
 
-        if (line < 10){
-            cout << " " << line << "  | " << showPlace(places[line[0]) << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | "
-            << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " |\n";
+        if (line < 9){
+            cout << " " << line+1 << "  | " 
+            << showPlace(places[line][0]) << " | " << showPlace(places[line][1]) << " | " << showPlace(places[line][2]) << " | " 
+            << showPlace(places[line][3]) << " | " << showPlace(places[line][4]) << " | " << showPlace(places[line][5]) << " | " 
+            << showPlace(places[line][6]) << " | " << showPlace(places[line][7]) << " | " << showPlace(places[line][8]) << " | " 
+            << showPlace(places[line][9]) << " |\n";
         } else
-            cout << " " << line << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | " << 0 << " | "
-            << 0 << " | " << 0 << " | " << 0 << " | " << 0 <<" |\n\n";
+            cout << " " << line+1 << " | " 
+            << showPlace(places[line][0]) << " | " << showPlace(places[line][1]) << " | " << showPlace(places[line][2]) << " | " 
+            << showPlace(places[line][3]) << " | " << showPlace(places[line][4]) << " | " << showPlace(places[line][5]) << " | "
+            << showPlace(places[line][6]) << " | " << showPlace(places[line][7]) << " | " << showPlace(places[line][8]) << " | " 
+            << showPlace(places[line][9]) <<" |\n\n";
         }
 
 
@@ -42,28 +46,8 @@ void showMap(){
 
 
 
-
-
 int main (){
-    /* regras:
-         - um mapa para posicionar os navios
-        (definir area do mapa, limitar os navios que podem ocupar, nao deixar colocar onde ja tem, *exibir lista de navios com diferentes tamanhos*)
-         - mesmo mapa marca tiros do oponente
-        (mandar alerta "navio tal atingido", mandar alerta "navio tal abatido")
 
-         mapa:
-            - identificar cada quadrado
-            - apenas 5 navios (independente do tipo)
-            - escolher posicao
-            - comparar texto com a posicao no mapa
-            - verificar posiciao se adequada ("sem espaco", "fora do mapa")
-            -
-
-
-         *opcional/n necessario para o projeto*
-         - outro mapa marca meus tiros para o oponente
-        (mapa limpo apenas para mandar comandos e acertar no oponente)
-    */
 
 
 showMap();
@@ -109,9 +93,30 @@ showMap();
 
 
 
+
+
+
     };
 
 
 }
 
 
+
+
+    /* regras:
+         - um mapa para posicionar os navios
+        (definir area do mapa, limitar os navios que podem ocupar, nao deixar colocar onde ja tem, *exibir lista de navios com diferentes tamanhos*)
+         - mesmo mapa marca tiros do oponente
+        (mandar alerta "navio tal atingido", mandar alerta "navio tal abatido")
+         mapa:
+            - identificar cada quadrado
+            - apenas 5 navios (independente do tipo)
+            - escolher posicao
+            - comparar input com a posicao no mapa
+            - verificar posiciao se adequada ("sem espaco", "fora do mapa")
+            
+         *opcional/n necessario para o projeto*
+         - outro mapa marca meus tiros para o oponente
+        (mapa limpo apenas para mandar comandos e acertar no oponente)
+    */
