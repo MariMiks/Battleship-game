@@ -4,53 +4,47 @@
 using namespace std;
 
 
+
+
 //construcao do mapa
 
 int showPlace(int place){
 
-    if (place = 0){
-        return 0;
-    } else {
+    if (place <= 10){
         return 1;
+    } else {
+        return 0;
     };
 
 }
 
-int places[10][10];
 
+void showMap(int places[][10]){
 
-void showMap(){
+    cout << "Battleship Game\n\n";
 
-    cout << "Battleship Game\n";
+    cout << "  | A | B | C | D | E | F | G | H | I | J |\n" << "1 | ";
 
-    cout << "    | A | B | C | D | E | F | G | H | I | J |\n";
-
-    for (int line = 0; line < 10; line++){
-
-        if (line < 9){
-            cout << " " << line+1 << "  | " 
-            << showPlace(places[line][0]) << " | " << showPlace(places[line][1]) << " | " << showPlace(places[line][2]) << " | " 
-            << showPlace(places[line][3]) << " | " << showPlace(places[line][4]) << " | " << showPlace(places[line][5]) << " | " 
-            << showPlace(places[line][6]) << " | " << showPlace(places[line][7]) << " | " << showPlace(places[line][8]) << " | " 
-            << showPlace(places[line][9]) << " |\n";
-        } else
-            cout << " " << line+1 << " | " 
-            << showPlace(places[line][0]) << " | " << showPlace(places[line][1]) << " | " << showPlace(places[line][2]) << " | " 
-            << showPlace(places[line][3]) << " | " << showPlace(places[line][4]) << " | " << showPlace(places[line][5]) << " | "
-            << showPlace(places[line][6]) << " | " << showPlace(places[line][7]) << " | " << showPlace(places[line][8]) << " | " 
-            << showPlace(places[line][9]) <<" |\n\n";
+    for (int row = 0; row < 10; row++){
+        for (int column = 0; column < 10; column++)
+            cout<< places[row][column] << " | ";
+        if (row < 9)
+            cout << endl << row+2 << " | ";
         }
+}
 
-
-    };
 
 
 
 int main (){
 
+int places[10][10];
 
+for (int row = 0; row < 10; row++)
+    for (int column = 0; column < 10; column++)
+        places[row][column]= 0;
 
-showMap();
+showMap(places);
 
 
 //lista de navios
@@ -59,11 +53,13 @@ showMap();
         "2. Battleship (4)\n",
         "3. Destroyer (3)\n",
         "4. Submarine (3)\n",
-        "5. Patrol Boat (2)\n"};
+        "5. Patrol Boat (1)\n"};
 
     for (int contList = 0; contList < sizeof ships/sizeof ships[0]; contList++) {
         cout << ships[contList];
     };
+
+
 
 //posicionamento do mapa
 
@@ -89,14 +85,14 @@ showMap();
         cin >> choiceLine;
         cout << "Column: \n";
         cin >> choiceCol;
+
+        places[choiceLine+1][choiceCol+1]=1;
+        showMap(places);
         cont++;
 
 
-
-
-
-
     };
+
 
 
 }
@@ -110,12 +106,12 @@ showMap();
          - mesmo mapa marca tiros do oponente
         (mandar alerta "navio tal atingido", mandar alerta "navio tal abatido")
          mapa:
-            - identificar cada quadrado
-            - apenas 5 navios (independente do tipo)
+            - identificar cada quadrado +
+            - apenas 5 navios (independente do tipo) +
             - escolher posicao
             - comparar input com a posicao no mapa
             - verificar posiciao se adequada ("sem espaco", "fora do mapa")
-            
+
          *opcional/n necessario para o projeto*
          - outro mapa marca meus tiros para o oponente
         (mapa limpo apenas para mandar comandos e acertar no oponente)
