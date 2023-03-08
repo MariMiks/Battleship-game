@@ -27,14 +27,34 @@ void showMap(int places[][10]){
 
     for (int row = 0; row < 10; row++){
         for (int column = 0; column < 10; column++)
-            cout<< places[row][column] << " | ";
-        if (row < 9)
-            cout << endl << row+2 << " | ";
-        }
+                cout << places[row][column] << " | ";
+            if (row < 9)
+                cout << endl << row+2 << " | ";
+
+    }
 }
 
+//lista de navios
+void showList(){
+    string ships[5] =
+        {"\n\n1. Carrier (5)\n",
+        "2. Battleship (4)\n",
+        "3. Destroyer (3)\n",
+        "4. Submarine (3)\n",
+        "5. Patrol Boat (2)\n"};
+
+    for (int contList = 0; contList < sizeof ships/sizeof ships[0]; contList++) {
+        cout << ships[contList];
+    };
+
+}
+
+//checar places
+void check(){
 
 
+
+}
 
 int main (){
 
@@ -47,31 +67,17 @@ for (int row = 0; row < 10; row++)
 showMap(places);
 
 
-//lista de navios
-    string ships[5] =
-        {"1. Carrier (5)\n",
-        "2. Battleship (4)\n",
-        "3. Destroyer (3)\n",
-        "4. Submarine (3)\n",
-        "5. Patrol Boat (1)\n"};
-
-    for (int contList = 0; contList < sizeof ships/sizeof ships[0]; contList++) {
-        cout << ships[contList];
-    };
-
-
-
 //posicionamento do mapa
 
     int cont = 0;
-    while (cont < 5){
+    while (cont < 10){
         int choiceShip;
-        int choiceLine;
-        char choiceCol;
+        int choiceRow;
+        int choiceCol;
 
+        showList();
         cout << "Choose your ship: \n";
         cin >> choiceShip;
-
 
         if (choiceShip > 5){
             cout << "Thats not an option \n";
@@ -79,14 +85,51 @@ showMap(places);
             cin >> choiceShip;
         }
 
-
         cout << "Choose it place\n";
-        cout << "Line: \n";
-        cin >> choiceLine;
+        cout << "Row: \n";
+        cin >> choiceRow;
         cout << "Column: \n";
         cin >> choiceCol;
 
-        places[choiceLine+1][choiceCol+1]=1;
+        switch(choiceShip){
+            case 5:
+                places[choiceRow-1][choiceCol-1]=5;
+                places[choiceRow-1][choiceCol]=5;
+                break;
+
+            case 4:
+                places[choiceRow-1][choiceCol-1]=4;
+                places[choiceRow-1][choiceCol]=4;
+                places[choiceRow-1][choiceCol+1]=4;
+                break;
+
+            case 3:
+                places[choiceRow-1][choiceCol-1]=3;
+                places[choiceRow-1][choiceCol]=3;
+                places[choiceRow-1][choiceCol+1]=3;
+                break;
+
+            case 2:
+                places[choiceRow-1][choiceCol-1]=2;
+                places[choiceRow-1][choiceCol]=2;
+                places[choiceRow-1][choiceCol+1]=2;
+                places[choiceRow-1][choiceCol+2]=2;
+                break;
+
+            case 1:
+                places[choiceRow-1][choiceCol-1]=1;
+                places[choiceRow-1][choiceCol]=1;
+                places[choiceRow-1][choiceCol+1]=1;
+                places[choiceRow-1][choiceCol+2]=1;
+                places[choiceRow-1][choiceCol+3]=1;
+                break;
+        }
+
+        int check = places[choiceRow][choiceCol] != 0 || choiceRow < 0 || choiceRow > 10 || choiceCol < 0 || choiceCol > 10;
+        if (check){
+            cout << "Not empty or out of the map";
+        };
+
         showMap(places);
         cont++;
 
