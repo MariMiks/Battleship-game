@@ -4,19 +4,7 @@
 using namespace std;
 
 
-
-
 //construcao do mapa
-
-int showPlace(int place){
-
-    if (place <= 10){
-        return 1;
-    } else {
-        return 0;
-    };
-
-}
 
 
 void showMap(int places[][10]){
@@ -46,13 +34,6 @@ void showList(){
     for (int contList = 0; contList < sizeof ships/sizeof ships[0]; contList++) {
         cout << ships[contList];
     };
-
-}
-
-//checar places
-void check(){
-
-
 
 }
 
@@ -91,44 +72,68 @@ showMap(places);
         cout << "Column: \n";
         cin >> choiceCol;
 
+        if (choiceCol < 0 || choiceCol > 10 || choiceRow < 0 || choiceRow > 10){
+            cout << "Row or column out of the map. Choose again.\n\n";
+            cout << "Row: \n";
+            cin >> choiceRow;
+            cout << "Column: \n";
+            cin >> choiceCol;
+        };
+        
+        
+
         switch(choiceShip){
             case 5:
-                places[choiceRow-1][choiceCol-1]=5;
-                places[choiceRow-1][choiceCol]=5;
-                break;
+                if (choiceCol != 10){
+                    places[choiceRow-1][choiceCol-1]=5;
+                    places[choiceRow-1][choiceCol]=5;
+                    break;
+                }
 
             case 4:
-                places[choiceRow-1][choiceCol-1]=4;
-                places[choiceRow-1][choiceCol]=4;
-                places[choiceRow-1][choiceCol+1]=4;
-                break;
+                if (choiceCol < 9){
+                    places[choiceRow-1][choiceCol-1]=4;
+                    places[choiceRow-1][choiceCol]=4;
+                    places[choiceRow-1][choiceCol+1]=4;
+                    break;
+                } 
+                
 
             case 3:
-                places[choiceRow-1][choiceCol-1]=3;
-                places[choiceRow-1][choiceCol]=3;
-                places[choiceRow-1][choiceCol+1]=3;
-                break;
+                if (choiceCol < 9){
+                    places[choiceRow-1][choiceCol-1]=3;
+                    places[choiceRow-1][choiceCol]=3;
+                    places[choiceRow-1][choiceCol+1]=3;
+                    break;
+                } 
 
             case 2:
-                places[choiceRow-1][choiceCol-1]=2;
-                places[choiceRow-1][choiceCol]=2;
-                places[choiceRow-1][choiceCol+1]=2;
-                places[choiceRow-1][choiceCol+2]=2;
-                break;
+                if (choiceCol < 8){
+                    places[choiceRow-1][choiceCol-1]=2;
+                    places[choiceRow-1][choiceCol]=2;
+                    places[choiceRow-1][choiceCol+1]=2;
+                    places[choiceRow-1][choiceCol+2]=2;
+                    break;
 
+                }
+                
             case 1:
-                places[choiceRow-1][choiceCol-1]=1;
-                places[choiceRow-1][choiceCol]=1;
-                places[choiceRow-1][choiceCol+1]=1;
-                places[choiceRow-1][choiceCol+2]=1;
-                places[choiceRow-1][choiceCol+3]=1;
+                if (choiceCol < 7){
+                    places[choiceRow-1][choiceCol-1]=1;
+                    places[choiceRow-1][choiceCol]=1;
+                    places[choiceRow-1][choiceCol+1]=1;
+                    places[choiceRow-1][choiceCol+2]=1;
+                    places[choiceRow-1][choiceCol+3]=1;
+                    break;
+                } 
+                
+            
+            default:
+                cout << "\nShip out of the map\n\n";
                 break;
         }
 
-        int check = places[choiceRow][choiceCol] != 0 || choiceRow < 0 || choiceRow > 10 || choiceCol < 0 || choiceCol > 10;
-        if (check){
-            cout << "Not empty or out of the map";
-        };
+        
 
         showMap(places);
         cont++;
@@ -139,7 +144,6 @@ showMap(places);
 
 
 }
-
 
 
 
