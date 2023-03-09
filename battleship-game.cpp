@@ -20,9 +20,6 @@ void showMap(int places[][10]){
                 cout << endl << row+2 << "  | ";
             if (row ==  8)
                 cout << endl << row+2 << " | ";
-
-
-
     }
 }
 
@@ -41,6 +38,7 @@ void showList(){
 
 }
 
+//escolha de navios
 void showShip(int ship, int row, int col){
     switch(ship){
         case 5:
@@ -107,7 +105,6 @@ showMap(places);
 
 
 //posicionamento do mapa
-
     int choiceShip;
     int choiceRow;
     int choiceCol;
@@ -153,19 +150,43 @@ showMap(places);
 
 
 
-    /* regras:
-         - um mapa para posicionar os navios
-        (definir area do mapa, limitar os navios que podem ocupar, nao deixar colocar onde ja tem, *exibir lista de navios com diferentes tamanhos*)
-         - mesmo mapa marca tiros do oponente
-        (mandar alerta "navio tal atingido", mandar alerta "navio tal abatido")
-         mapa:
-            - identificar cada quadrado +
-            - apenas 5 navios (independente do tipo) +
-            - escolher posicao
-            - comparar input com a posicao no mapa
-            - verificar posiciao se adequada ("sem espaco", "fora do mapa")
+    /* do:
+
+        - separar para dois jogadores
+        {
+        momento com dois humanos:
+            - jogador 1 posiciona seus navios
+            - jogador 2 posiciona seus navios
+            - mapa para jogador 1 atingir navios do jogador 2 (mapa mostrando vazio porem armazenado as informacoes de cada um)
+            - mapa para jogador 2 atingir navios do jogador 1 (mapa mostrando vazio porem armazenado as informacoes de cada um)
+            - mandar alerta "navio tal atingido", mandar alerta "navio tal abatido"
+            -
+
+        }
+
+        -
+
+        - exibir vitoria (quando o oponente derruba todos os navios de um jogador)
 
          *opcional/n necessario para o projeto*
          - outro mapa marca meus tiros para o oponente
         (mapa limpo apenas para mandar comandos e acertar no oponente)
     */
+
+    /* doing:
+
+
+    */
+
+    /*done:
+     - um mapa para posicionar os navios
+        (definir area do mapa, limitar os navios que podem ocupar, nao deixar colocar onde ja tem, *exibir lista de navios com diferentes tamanhos*)
+        mapa:
+            - identificar cada quadrado +
+            - apenas 5 navios (independente do tipo) +
+            - escolher posicao +
+            - comparar input com a posicao no mapa +
+            - verificar posiciao se adequada ("sem espaco", "fora do mapa") ++
+
+    */
+
