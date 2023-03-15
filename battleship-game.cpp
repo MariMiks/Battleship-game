@@ -29,8 +29,8 @@ void showList(){
         {"\n\n1. Carrier (5)\n",
         "2. Battleship (4)\n",
         "3. Destroyer (3)\n",
-        "4. Submarine (3)\n",
-        "5. Patrol Boat (2)\n"};
+        "4. Submarine (2)\n",
+        "5. Patrol Boat (1)\n"};
 
     for (int contList = 0; contList < sizeof ships/sizeof ships[0]; contList++) {
         cout << ships[contList];
@@ -38,13 +38,21 @@ void showList(){
 
 }
 
+
+//bloquear ao redor do navio
+void block(int row, int col){
+    if (places[row-1][col-1] != 0){
+
+    }
+}
+
+
 //escolha de navios
 void showShip(int ship, int row, int col){
     switch(ship){
         case 5:
             if (col != 10){
                         places[row-1][col-1]=5;
-                        places[row-1][col]=5;
                         break;
                     }
 
@@ -52,7 +60,6 @@ void showShip(int ship, int row, int col){
             if (col < 9){
                         places[row-1][col-1]=4;
                         places[row-1][col]=4;
-                        places[row-1][col+1]=4;
                         break;
                     }
 
@@ -72,7 +79,6 @@ void showShip(int ship, int row, int col){
                         places[row-1][col+1]=2;
                         places[row-1][col+2]=2;
                         break;
-
                     }
 
         case 1:
@@ -91,6 +97,7 @@ void showShip(int ship, int row, int col){
                     break;
             }
 }
+
 
 
 
@@ -128,13 +135,28 @@ showMap(places);
         cout << "Column: \n";
         cin >> choiceCol;
 
-        if (places[choiceRow-1][choiceCol-1] != 0 || choiceCol < 0 || choiceCol > 10 || choiceRow < 0 || choiceRow > 10){
-            cout << "\nNot empty or out of the map. Choose again.\n\n";
+        if (places[choiceRow-1][choiceCol-1] != 0){
+            cout << "\nNot empty. Choose again.\n\n";
+
+            if (places[choiceRow-1][choiceCol-1] == places[choiceRow][choiceCol-1]){
+            cout << "too close";
+            }
+
             cout << "Row: \n";
             cin >> choiceRow;
             cout << "Column: \n";
             cin >> choiceCol;
         };
+
+        /*
+        if (){
+            cout << "\nToo close. Chose again.\n\n";
+            cout << "Row: \n";
+            cin >> choiceRow;
+            cout << "Column: \n";
+            cin >> choiceCol;
+        }
+        */
 
         showShip(choiceShip, choiceRow, choiceCol);
 
@@ -142,7 +164,7 @@ showMap(places);
         cont++;
 
 
-    } while (cont < 6);
+    } while (cont < 9);
 
 
 
@@ -152,6 +174,17 @@ showMap(places);
 
     /* do:
 
+        - determinar qntd de cada navio
+            1. Carrier (5 casas) (1 qntd)
+            2. Battleship (4 c) (2 q)
+            3. Destroyer (3 c) (3 q)
+            4. Submarine (2 c) (3 q)
+            5. Patrol Boat (1 c) (2 q)
+
+
+        - exibir mensagem de finalizacao de posicionamento
+
+
         - separar para dois jogadores
         {
         momento com dois humanos:
@@ -160,11 +193,8 @@ showMap(places);
             - mapa para jogador 1 atingir navios do jogador 2 (mapa mostrando vazio porem armazenado as informacoes de cada um)
             - mapa para jogador 2 atingir navios do jogador 1 (mapa mostrando vazio porem armazenado as informacoes de cada um)
             - mandar alerta "navio tal atingido", mandar alerta "navio tal abatido"
-            -
-
         }
 
-        -
 
         - exibir vitoria (quando o oponente derruba todos os navios de um jogador)
 
@@ -173,17 +203,21 @@ showMap(places);
         (mapa limpo apenas para mandar comandos e acertar no oponente)
     */
 
-    /* doing:
 
+
+    /* doing:
+        - n deixar posicionar um navio do lado do outro
 
     */
+
+
 
     /*done:
      - um mapa para posicionar os navios
         (definir area do mapa, limitar os navios que podem ocupar, nao deixar colocar onde ja tem, *exibir lista de navios com diferentes tamanhos*)
         mapa:
             - identificar cada quadrado +
-            - apenas 5 navios (independente do tipo) +
+            - apenas 9 navios (independente do tipo) +
             - escolher posicao +
             - comparar input com a posicao no mapa +
             - verificar posiciao se adequada ("sem espaco", "fora do mapa") ++
