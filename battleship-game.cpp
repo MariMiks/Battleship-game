@@ -9,7 +9,7 @@ int places[10][10];
 
 void showMap(int places[][10]){
 
-    cout << "Battleship Game\n\n";
+    cout << "               Battleship Game\n\n";
 
     cout << "   | A | B | C | D | E | F | G | H | I | J |\n" << "1  | ";
 
@@ -42,17 +42,19 @@ void showList(){
 //bloquear ao redor do navio
 void block(int row, int col){
     if (places[row-1][col-1] != 0){
-
-    }
+        cout << "\nToo close\n";
+    };
 }
 
 
 //escolha de navios
 void showShip(int ship, int row, int col){
+    int count = 1;
     switch(ship){
         case 5:
             if (col != 10){
                         places[row-1][col-1]=5;
+                    count--;
                         break;
                     }
 
@@ -135,18 +137,16 @@ showMap(places);
         cout << "Column: \n";
         cin >> choiceCol;
 
-        if (places[choiceRow-1][choiceCol-1] != 0){
+
+        while (places[choiceRow-1][choiceCol-1] != 0){
             cout << "\nNot empty. Choose again.\n\n";
-
-            if (places[choiceRow-1][choiceCol-1] == places[choiceRow][choiceCol-1]){
-            cout << "too close";
-            }
-
             cout << "Row: \n";
             cin >> choiceRow;
             cout << "Column: \n";
             cin >> choiceCol;
         };
+
+
 
         /*
         if (){
@@ -159,12 +159,16 @@ showMap(places);
         */
 
         showShip(choiceShip, choiceRow, choiceCol);
+        block(choiceRow, choiceCol);
 
         showMap(places);
         cont++;
 
 
-    } while (cont < 9);
+    } while (cont < 6); {
+
+        cout << endl << "Lets play!!!";
+    };
 
 
 
@@ -207,6 +211,8 @@ showMap(places);
 
     /* doing:
         - n deixar posicionar um navio do lado do outro
+
+        verificar seus arredores, while showShip == block -> "Too close"
 
     */
 
