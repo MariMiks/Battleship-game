@@ -49,12 +49,10 @@ void block(int row, int col){
 
 //escolha de navios
 void showShip(int ship, int row, int col){
-    int count = 1;
-    switch(ship){
+        switch(ship){
         case 5:
             if (col != 10){
                         places[row-1][col-1]=5;
-                    count--;
                         break;
                     }
 
@@ -95,11 +93,31 @@ void showShip(int ship, int row, int col){
 
 
                 default:
-                    cout << "\nShip out of the map\n\n";
+                    cout << "\nShip out of map or too many of them\n\n";
                     break;
             }
+
 }
 
+
+void countingShips(int ship) {
+    int cont1 = 0;
+    int cont2 = 0;
+    int cont3 = 0;
+    int cont4 = 0;
+    int cont5 = 0;
+
+
+    for (int cont1 = 0; cont1 == 1; cont1++){
+        if (ship == 1){
+            cout << cont1;
+            cout << "\nNot an option anymore\n\n";
+            cout << "Please choose another one: \n";
+            cin >> ship;
+        }
+    }
+
+}
 
 
 
@@ -131,6 +149,8 @@ showMap(places);
             cin >> choiceShip;
         }
 
+        countingShips(choiceShip);
+
         cout << "Choose it place\n";
         cout << "Row: \n";
         cin >> choiceRow;
@@ -157,6 +177,8 @@ showMap(places);
             cin >> choiceCol;
         }
         */
+
+
 
         showShip(choiceShip, choiceRow, choiceCol);
         block(choiceRow, choiceCol);
