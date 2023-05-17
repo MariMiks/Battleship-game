@@ -9,7 +9,7 @@ int places[10][10];
 
 void showMap(int places[][10]){
 
-    cout << "Battleship Game\n\n";
+    cout << "               Battleship Game\n\n";
 
     cout << "   | A | B | C | D | E | F | G | H | I | J |\n" << "1  | ";
 
@@ -23,14 +23,21 @@ void showMap(int places[][10]){
     }
 }
 
-//lista de navios
+void cleanMap(int places[][10]){
+    for (int row = 0; row < 10; row++)
+    for (int column = 0; column < 10; column++)
+        places[row][column]= 0;
+}
+
+
+//ships
 void showList(){
     string ships[5] =
         {"\n\n1. Carrier (5)\n",
         "2. Battleship (4)\n",
         "3. Destroyer (3)\n",
-        "4. Submarine (3)\n",
-        "5. Patrol Boat (2)\n"};
+        "4. Submarine (2)\n",
+        "5. Patrol Boat (1)\n"};
 
     for (int contList = 0; contList < sizeof ships/sizeof ships[0]; contList++) {
         cout << ships[contList];
@@ -38,13 +45,58 @@ void showList(){
 
 }
 
-//escolha de navios
+void showPatrol(int ship, int row, int col){
+    int cont = 0;
+    
+    while(ship == 5 && cont < 6){
+        if(col != 10){
+            if (places[row-1][col-2] == 0 && places[row-1][col] == 0){
+                if (places[row-2][col-2] == 0 && places[row-2][col-1] == 0 && places[row-2][col] == 0) {
+                    if (places[row][col] == 0 && places[row][col-1] == 0 && places[row][col-2] == 0){
+                        
+                        places[row-1][col-1] = 1;
+                        
+                    }
+                    else {
+                    cout << endl << "Too close" << endl;
+                    cout << "Row: ";
+                    cin >> row;
+                    cout << "Column: ";
+                    cin >> col;
+            }
+                    
+                    
+                }
+                else {
+                cout << endl << "Too close" << endl;
+                cout << "Row: ";
+                cin >> row;
+                cout << "Column: ";
+                cin >> col;
+            }
+                
+            }
+            else {
+                cout << endl << "Too close" << endl;
+                cout << "Row: ";
+                cin >> row;
+                cout << "Column: ";
+                cin >> col;
+            }
+            
+        }
+        
+        cont++;
+        break;
+    }
+}
+
+/*
 void showShip(int ship, int row, int col){
-    switch(ship){
+        switch(ship){
         case 5:
             if (col != 10){
                         places[row-1][col-1]=5;
-                        places[row-1][col]=5;
                         break;
                     }
 
@@ -52,7 +104,6 @@ void showShip(int ship, int row, int col){
             if (col < 9){
                         places[row-1][col-1]=4;
                         places[row-1][col]=4;
-                        places[row-1][col+1]=4;
                         break;
                     }
 
@@ -72,7 +123,6 @@ void showShip(int ship, int row, int col){
                         places[row-1][col+1]=2;
                         places[row-1][col+2]=2;
                         break;
-
                     }
 
         case 1:
@@ -87,20 +137,18 @@ void showShip(int ship, int row, int col){
 
 
                 default:
-                    cout << "\nShip out of the map\n\n";
+                    cout << "\nShip out of map or too many of them\n\n";
                     break;
             }
+
 }
-
-
+*/
 
 //jogo rodando
 int main (){
 
-for (int row = 0; row < 10; row++)
-    for (int column = 0; column < 10; column++)
-        places[row][column]= 0;
 
+cleanMap(places);
 showMap(places);
 
 
@@ -109,84 +157,45 @@ showMap(places);
     int choiceRow;
     int choiceCol;
     int cont = 0;
+    
     do {
 
 
         showList();
-        cout << "Choose your ship: \n";
+        cout << "Choose your ship: " << endl;
         cin >> choiceShip;
 
         if (choiceShip > 5){
-            cout << "Thats not an option \n";
-            cout << "Choose another ship: \n";
+            cout << "Thats not an option" << endl;
+            cout << "Choose another ship: " << endl;
             cin >> choiceShip;
         }
 
-        cout << "Choose it place\n";
-        cout << "Row: \n";
+        cout << "Choose it place" << endl;
+        cout << "Row: ";
         cin >> choiceRow;
-        cout << "Column: \n";
+        cout << "Column: ";
         cin >> choiceCol;
 
-        if (places[choiceRow-1][choiceCol-1] != 0 || choiceCol < 0 || choiceCol > 10 || choiceRow < 0 || choiceRow > 10){
-            cout << "\nNot empty or out of the map. Choose again.\n\n";
-            cout << "Row: \n";
+
+        while (places[choiceRow-1][choiceCol-1] != 0){
+            cout << endl << "Not empty. Choose again." << endl;
+            cout << "Row: ";
             cin >> choiceRow;
-            cout << "Column: \n";
+            cout << "Column: ";
             cin >> choiceCol;
         };
-
-        showShip(choiceShip, choiceRow, choiceCol);
-
+        
+        
+        showPatrol(choiceShip, choiceRow, choiceCol);
         showMap(places);
         cont++;
 
 
-    } while (cont < 6);
+    } while (cont < 9); {
 
+        cout << endl << endl << "Lets play!!!";
+    };
 
 
 }
-
-
-
-    /* do:
-
-        - separar para dois jogadores
-        {
-        momento com dois humanos:
-            - jogador 1 posiciona seus navios
-            - jogador 2 posiciona seus navios
-            - mapa para jogador 1 atingir navios do jogador 2 (mapa mostrando vazio porem armazenado as informacoes de cada um)
-            - mapa para jogador 2 atingir navios do jogador 1 (mapa mostrando vazio porem armazenado as informacoes de cada um)
-            - mandar alerta "navio tal atingido", mandar alerta "navio tal abatido"
-            -
-
-        }
-
-        -
-
-        - exibir vitoria (quando o oponente derruba todos os navios de um jogador)
-
-         *opcional/n necessario para o projeto*
-         - outro mapa marca meus tiros para o oponente
-        (mapa limpo apenas para mandar comandos e acertar no oponente)
-    */
-
-    /* doing:
-
-
-    */
-
-    /*done:
-     - um mapa para posicionar os navios
-        (definir area do mapa, limitar os navios que podem ocupar, nao deixar colocar onde ja tem, *exibir lista de navios com diferentes tamanhos*)
-        mapa:
-            - identificar cada quadrado +
-            - apenas 5 navios (independente do tipo) +
-            - escolher posicao +
-            - comparar input com a posicao no mapa +
-            - verificar posiciao se adequada ("sem espaco", "fora do mapa") ++
-
-    */
-
