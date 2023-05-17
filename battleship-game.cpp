@@ -10,6 +10,7 @@ int places[10][10];
 void showMap(int places[][10]){
 
     cout << "               Battleship Game\n\n";
+    cout << "               Battleship Game\n\n";
 
     cout << "   | A | B | C | D | E | F | G | H | I | J |\n" << "1  | ";
 
@@ -94,6 +95,7 @@ void showPatrol(int ship, int row, int col){
 /*
 void showShip(int ship, int row, int col){
         switch(ship){
+        switch(ship){
         case 5:
             if (col != 10){
                         places[row-1][col-1]=5;
@@ -140,6 +142,26 @@ void showShip(int ship, int row, int col){
                     cout << "\nShip out of map or too many of them\n\n";
                     break;
             }
+
+}
+
+
+void countingShips(int ship) {
+    int cont1 = 0;
+    int cont2 = 0;
+    int cont3 = 0;
+    int cont4 = 0;
+    int cont5 = 0;
+
+
+    for (int cont1 = 0; cont1 == 1; cont1++){
+        if (ship == 1){
+            cout << cont1;
+            cout << "\nNot an option anymore\n\n";
+            cout << "Please choose another one: \n";
+            cin >> ship;
+        }
+    }
 
 }
 */
