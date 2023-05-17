@@ -4,12 +4,11 @@
 using namespace std;
 
 
-//construcao do mapa
+//map
 int places[10][10];
 
 void showMap(int places[][10]){
 
-    cout << "               Battleship Game\n\n";
     cout << "               Battleship Game\n\n";
 
     cout << "   | A | B | C | D | E | F | G | H | I | J |\n" << "1  | ";
@@ -26,8 +25,8 @@ void showMap(int places[][10]){
 
 void cleanMap(int places[][10]){
     for (int row = 0; row < 10; row++)
-    for (int column = 0; column < 10; column++)
-        places[row][column]= 0;
+        for (int column = 0; column < 10; column++)
+            places[row][column]= 0;
 }
 
 
@@ -48,34 +47,38 @@ void showList(){
 
 void showPatrol(int ship, int row, int col){
     int cont = 0;
-    
+
     while(ship == 5 && cont < 6){
         if(col != 10){
             if (places[row-1][col-2] == 0 && places[row-1][col] == 0){
                 if (places[row-2][col-2] == 0 && places[row-2][col-1] == 0 && places[row-2][col] == 0) {
                     if (places[row][col] == 0 && places[row][col-1] == 0 && places[row][col-2] == 0){
-                        
+
                         places[row-1][col-1] = 1;
-                        
+
                     }
                     else {
+                        cout << endl << "Too close" << endl;
+                        cout << "Row: ";
+                        cin >> row;
+                        cout << "Column: ";
+                        cin >> col;
+                        places[row-1][col-1] = 1;
+
+                    }
+
+
+                }
+                else {
                     cout << endl << "Too close" << endl;
                     cout << "Row: ";
                     cin >> row;
                     cout << "Column: ";
                     cin >> col;
-            }
-                    
-                    
+                    places[row-1][col-1] = 1;
+
                 }
-                else {
-                cout << endl << "Too close" << endl;
-                cout << "Row: ";
-                cin >> row;
-                cout << "Column: ";
-                cin >> col;
-            }
-                
+
             }
             else {
                 cout << endl << "Too close" << endl;
@@ -83,14 +86,27 @@ void showPatrol(int ship, int row, int col){
                 cin >> row;
                 cout << "Column: ";
                 cin >> col;
+                places[row-1][col-1] = 1;
+
             }
-            
+
         }
-        
+
         cont++;
         break;
     }
 }
+
+/* down line
+for (int i = 0; i > -3; i++){
+    if (places[row][col+i]){
+        cout << endl << "Too close" << endl;
+    }
+}
+*/
+
+
+
 
 /*
 void showShip(int ship, int row, int col){
@@ -166,7 +182,7 @@ void countingShips(int ship) {
 }
 */
 
-//jogo rodando
+//running
 int main (){
 
 
@@ -174,12 +190,12 @@ cleanMap(places);
 showMap(places);
 
 
-//posicionamento do mapa
+//position
     int choiceShip;
     int choiceRow;
     int choiceCol;
     int cont = 0;
-    
+
     do {
 
 
@@ -207,8 +223,8 @@ showMap(places);
             cout << "Column: ";
             cin >> choiceCol;
         };
-        
-        
+
+
         showPatrol(choiceShip, choiceRow, choiceCol);
         showMap(places);
         cont++;
