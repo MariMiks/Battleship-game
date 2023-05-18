@@ -93,8 +93,6 @@ void showPatrol(int ship, int row, int col){
                 }
             }
 
-
-
         cont++;
         break;
     }
