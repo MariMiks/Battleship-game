@@ -45,55 +45,59 @@ void showList(){
 
 }
 
+bool check(int row, int col){
+
+            if (places[row-1][col-2] == 0 && places[row-1][col] == 0){
+                if (places[row-2][col-2] == 0 && places[row-2][col-1] == 0 && places[row-2][col] == 0) {
+                    if (places[row][col] == 0 && places[row][col-1] == 0 && places[row][col-2] == 0){
+
+                        return true;
+
+                    }else {
+                return false;
+            }
+                }else {
+                return false;
+            }
+            }
+            else {
+                return false;
+            }
+
+}
+
 void showPatrol(int ship, int row, int col){
     int cont = 0;
 
     while(ship == 5 && cont < 6){
         if(col != 10){
-            if (places[row-1][col-2] == 0 && places[row-1][col] == 0){
-                if (places[row-2][col-2] == 0 && places[row-2][col-1] == 0 && places[row-2][col] == 0) {
-                    if (places[row][col] == 0 && places[row][col-1] == 0 && places[row][col-2] == 0){
+            check(row, col);
 
-                        places[row-1][col-1] = 1;
-
-                    }
-                    else {
-                        cout << endl << "Too close" << endl;
-                        cout << "Row: ";
-                        cin >> row;
-                        cout << "Column: ";
-                        cin >> col;
-                        places[row-1][col-1] = 1;
-
-                    }
-
-
-                }
-                else {
-                    cout << endl << "Too close" << endl;
-                    cout << "Row: ";
-                    cin >> row;
-                    cout << "Column: ";
-                    cin >> col;
-                    places[row-1][col-1] = 1;
-
-                }
-
+            if (check(row, col) == true) {
+                cout << check(row, col);
+                places[row-1][col-1] = 1;
             }
-            else {
+
+            while (check(row, col) == false) {
+                cout << check(row, col);
                 cout << endl << "Too close" << endl;
                 cout << "Row: ";
                 cin >> row;
                 cout << "Column: ";
                 cin >> col;
-                places[row-1][col-1] = 1;
+                check(row, col);
 
+                if (check(row, col) == true){
+                    places[row-1][col-1] = 1;
+                    break;
+                }
             }
 
-        }
+
 
         cont++;
         break;
+    }
     }
 }
 
